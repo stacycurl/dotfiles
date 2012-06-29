@@ -1,0 +1,40 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+	branch-name = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
+	changes = diff HEAD --stat
+	ci = commit -v
+	conflict = !gitk --left-right HEAD...MERGE_HEAD
+	dc = diff --cached
+	dh = diff HEAD
+	export-branch = !git format-patch --stdout $1 > `git branch-name`.diff
+	fr = !git fetch && git rebase origin/`git branch-name` && git st
+	lc = log --reverse --no-merges --stat @{1}..
+	ld = !git log --format='%H %P' | xargs -L 1 git diff
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	sl = stash list
+	sp = stash pop
+	ss = stash show -v stash@{0}
+	st = !git status && untracked -v ivy
+	stats = !git log --stat --relative=starling | grep '|' | awk '{print $1}' | sort | uniq -c | sort -n
+	topush = log origin..master
+	track = update-index --no-assume-unchanged
+	untrack = update-index --assume-unchanged
+	wc = whatchanged -p
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
+#Highlight whitespace in diffs
+
+[color]
+	ui = true
+[color "diff"]
+	whitespace = red reverse
+[core]
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[push]
+	default = tracking
+[branch]
+	autosetuprebase = always

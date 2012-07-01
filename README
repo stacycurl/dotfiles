@@ -1,0 +1,16 @@
+Config for: bash, tmux, vim, git
+
+How I use this:
+
+1) Clone repo to ~/dotfiles
+2) Create symlinks:
+     ln -s ~/dotfiles/bashrc ~/.bashrc
+     ln -s ~/dotfiles/bash_profile ~/.bash_profile
+     ln -s ~/dotfiles/tmux.conf ~/.tmux_conf
+     ln -s ~/dotfiles/vim ~/.vim
+     ln -s ~/dotfiles/vimrc ~/.vimrc
+3) Create ~/.profile with contents:
+	. ~/dotfiles/profile
+	prependToPath ~/.bin
+	# Non-shared stuff
+4) cat ~/dotfiles/gitconfig >> ~/.gitconfig

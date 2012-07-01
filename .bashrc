@@ -1,3 +1,10 @@
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# Aliases
+alias vi=vim
+alias lynx="lynx --accept_all_cookies"
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -36,3 +43,4 @@ else
 fi
  
 unset color_prompt force_color_prompt
+

@@ -8,7 +8,6 @@ set laststatus=2
 set encoding=utf-8
 set colorcolumn=120
 set cursorline
-hi CursorLine term=none cterm=none ctermbg=8
 set scrolloff=5                 " keep at least 5 lines around the cursor
 set nobackup
 
@@ -22,6 +21,14 @@ set smartcase                       " ... unless they contain at least one capit
 set noerrorbells
 set visualbell
 set t_vb=
+
+syntax on
+set showmatch
+colorscheme stacy
+highlight CursorLine term=none cterm=none ctermbg=234
+highlight ColorColumn ctermbg=234
+filetype indent on
+filetype on
 
 " Make cursor behave as expected with wrapped lines
 inoremap <Down> <C-o>gj

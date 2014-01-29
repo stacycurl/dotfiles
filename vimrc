@@ -21,10 +21,14 @@ set smartcase                       " ... unless they contain at least one capit
 set noerrorbells
 set visualbell
 set t_vb=
+set showmatch
 
 syntax on
-set showmatch
-colorscheme stacy
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+" colorscheme stacy
+
 highlight CursorLine term=none cterm=none ctermbg=234
 highlight ColorColumn ctermbg=234
 filetype indent on
@@ -33,6 +37,9 @@ filetype on
 " Make cursor behave as expected with wrapped lines
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+
+" Clear search highlighting
+"nnoremap <esc> :noh<return><esc>
 
 " Fast saving
 nmap <leader>w :w!<cr>

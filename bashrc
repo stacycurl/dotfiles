@@ -1,9 +1,7 @@
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+export LSCOLORS=ExFxCxDxBxegedabagaced
 
-# Aliases
-alias vi=vim
-alias lynx="lynx --accept_all_cookies"
+source ~/.bash_aliases
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -30,7 +28,7 @@ function parse_git_branch {
  
   echo -n '\[\e[01;'"$ansi"'m\]'"$branch"
 }
- 
+
 function _prompt_command {
   # Can't set PS1 directly, otherwise ANSI stuff in parse_git_branch is ignored
   PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]"`parse_git_branch`"\[\033[00m\] \$ "

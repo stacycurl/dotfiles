@@ -47,6 +47,15 @@ nmap <leader>w :w!<cr>
 set wildmenu
 set wildmode=list:longest,full
 
+"if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a{ :Tabularize /{<CR>
+  vmap <Leader>a{ :Tabularize /{<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+"endif
+
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 "" 2 - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs

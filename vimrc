@@ -1,7 +1,17 @@
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles() 
+call pathogen#runtime_append_all_bundles()
 
 let g:Powerline_symbols = 'fancy'
+
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+set foldmethod=indent
+set foldlevelstart=-1
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+autocmd BufWinEnter *.* match ExtraWhitespace /\s\+$/
 
 set nocompatible
 set laststatus=2
@@ -23,6 +33,8 @@ set visualbell
 set t_vb=
 set showmatch
 
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
+
 syntax on
 set background=dark
 let g:solarized_termcolors=256
@@ -37,12 +49,19 @@ filetype on
 " Make cursor behave as expected with wrapped lines
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+set whichwrap+=<,>,h,l,[,]
 
 " Clear search highlighting
 "nnoremap <esc> :noh<return><esc>
 
 " Fast saving
+let mapleader=','
 nmap <leader>w :w!<cr>
+
+" create hidden buffer when navigating away from unsaved changes
+set hidden
+map <leader>j :bprevious<cr>
+map <leader>k :bnext<cr>
 
 set wildmenu
 set wildmode=list:longest,full
@@ -84,7 +103,7 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
- 
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 

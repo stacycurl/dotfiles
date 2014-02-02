@@ -87,8 +87,6 @@ nmap <leader>s :w!<cr>
 
 " create hidden buffer when navigating away from unsaved changes
 set hidden
-map <leader>j :bprevious<cr>
-map <leader>k :bnext<cr>
 
 map <silent> <leader><cr> :noh<cr>
 

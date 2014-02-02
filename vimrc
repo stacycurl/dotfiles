@@ -2,6 +2,7 @@ let g:pathogen_disabled = ['vim-powerline', 'vim-bufferline']
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
+let g:EasyMotion_leader_key = '<Leader>'
 
 let g:Powerline_symbols = 'fancy'
 let g:airline#extensions#tabline#enabled = 1
@@ -82,7 +83,7 @@ set whichwrap+=<,>,h,l,[,]
 
 " Fast saving
 let mapleader=','
-nmap <leader>w :w!<cr>
+nmap <leader>s :w!<cr>
 
 " create hidden buffer when navigating away from unsaved changes
 set hidden

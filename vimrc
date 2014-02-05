@@ -83,7 +83,7 @@ set whichwrap+=<,>,h,l,[,]
 
 " Fast saving
 let mapleader=','
-nmap <leader>s :w!<cr>
+" nmap <leader>s :w!<cr>
 
 " create hidden buffer when navigating away from unsaved changes
 set hidden
@@ -122,6 +122,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_use_caching = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+let g:ctrlp_mruf_case_sensitive = 0
 
 set wildignore+=*/.git/*,*.class
 
@@ -144,6 +145,8 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+" Globally Replace word under cursor
+nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<left><left>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬

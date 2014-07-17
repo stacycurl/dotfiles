@@ -1,1 +1,2 @@
 bind status D !@?rm %(file)
+bind main C !?git checkout %(commit)

@@ -31,9 +31,9 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-set foldmethod=indent
-set foldlevelstart=-1
-set foldtext=MyFoldText()
+"set foldmethod=indent
+"set foldlevelstart=-1
+"set foldtext=MyFoldText()
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
@@ -123,6 +123,7 @@ let g:ctrlp_working_path_mode = 2
 let g:ctrlp_use_caching = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_mruf_case_sensitive = 0
+let g:ctrlp_max_files=0
 
 set wildignore+=*/.git/*,*.class
 

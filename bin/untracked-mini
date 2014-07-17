@@ -1,0 +1,5 @@
+#!/bin/bash
+
+FILTER=${@- -v xyzzy}
+
+git ls-files -v | grep "^h" | grep $FILTER | awk '{print  "\033[01;34mU  \033[00m"$2}'

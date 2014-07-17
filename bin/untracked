@@ -1,0 +1,5 @@
+#!/bin/bash
+
+FILTER=${@- -v xyzzy}
+
+git ls-files -v | grep "^h" | grep $FILTER | awk '{print "#\t\033[01;34muntracked:  "$2}'

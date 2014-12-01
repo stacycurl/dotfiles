@@ -1,0 +1,5 @@
+com.intellij
+SBT
+org.intellij.scala
+com.scalaImportsOrganizer
+org.sylfra.idea.plugins.linessorter

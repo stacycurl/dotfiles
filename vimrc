@@ -27,13 +27,24 @@ let g:airline_linecolumn_prefix = '⭡'
 
 let g:gitgutter_highlight_lines = 1
 
+let g:tagbar_autoshowtag = 1
+let g:tagbar_compact = 1
+let g:tagbar_indent = 1
+
+let g:solarized_termcolors=256
+let g:rainbow_active = 1
+
+let g:SuperTabLongestEnhanced = 1
+
+let g:snipMate = {}
+
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-set foldmethod=indent
-set foldlevelstart=-1
-set foldtext=MyFoldText()
+" set foldmethod=indent
+" set foldlevelstart=-1
+" set foldtext=MyFoldText()
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
@@ -63,12 +74,11 @@ autocmd ColorScheme * highlight SignColumn ctermbg=black
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
 
 syntax on
-set background=dark
-let g:solarized_termcolors=256
+set background=light
 colorscheme solarized
 " colorscheme stacy
 
-highlight CursorLine term=none cterm=none ctermbg=234
+" highlight CursorLine term=none cterm=none ctermbg=234
 highlight ColorColumn ctermbg=234
 
 filetype plugin indent on
@@ -105,11 +115,13 @@ vmap <leader>K :m'<-2<cr>`>my`<mzgv`yo`z
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
+nnoremap <leader>o :TagbarToggle<CR>
+
 set wildmenu
 set wildmode=list:longest,full
 
 " align on various characters
-for [shortcuts, padding] in [['=+*-/{}', '/l1l1'], ['([', '/l1l0'], [')]', '/l0l1'], [';:,', '\zs']]
+for [shortcuts, padding] in [['=+*-/{}%', '/l1l1'], ['([', '/l1l0'], [')]', '/l0l1'], [';:,', '\zs']]
   for s in split(shortcuts, '\zs')
     execute 'nmap <leader>a' . s . ' :Tabularize /' . s . padding . '<CR>'
     execute 'vmap <leader>a' . s . ' :Tabularize /' . s . padding . '<CR>'
@@ -123,6 +135,7 @@ let g:ctrlp_working_path_mode = 2
 let g:ctrlp_use_caching = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_mruf_case_sensitive = 0
+let g:ctrlp_custom_ignore = 'target'
 
 set wildignore+=*/.git/*,*.class
 
@@ -213,4 +226,14 @@ function! MyFoldText()
   let fold_w = getwinvar( 0, '&foldcolumn' )
   let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
   return sub . info
+endfunction
+
+function! ToggleVerbose()
+  if !&verbose
+    set verbosefile=~/.vim/verbose.log
+    set verbose=15
+  else
+    set verbose=0
+    set verbosefile=
+  endif
 endfunction

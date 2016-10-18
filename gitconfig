@@ -4,27 +4,49 @@
 	branch = auto
 [alias]
 	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
-	branch-name = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
+        aa = add -A .
 	changes = diff HEAD --stat
 	ci = commit -v
-	conflict = !gitk --left-right HEAD...MERGE_HEAD
 	dc = diff --cached
+	dcw = diff --cached --color-words="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
+	ds = diff --staged
+	dsw = diff --staged --color-words="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
 	dh = diff HEAD
-	export-branch = !git format-patch --stdout $1 > `git branch-name`.diff
+        dhw = diff HEAD --color-words="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
+        dw = diff --color-words="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
 	fr = !git fetch && git rebase origin/`git branch-name` && git st
-	lc = log --reverse --no-merges --stat @{1}..
-	ld = !git log --format='%H %P' | xargs -L 1 git diff
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+	last = log --reverse --no-merges --stat @{1}..
+	lg = log --graph --pretty=format:'%C(bold blue)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(dim white)<%an>%Creset' --abbrev-commit --date=relative
+	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+	tog = !git log | tig
+
+
+        nuke = !git reset --hard HEAD && git clean -f -d
+        sith = push --force
+	jedi = push --force-with-lease
+
 	sl = stash list
 	sp = stash pop
 	ss = stash show -v stash@{0}
-	st = !git status && untracked -v ivy
-	stats = !git log --stat --relative=starling | grep '|' | awk '{print $1}' | sort | uniq -c | sort -n
+	stsh = stash --keep-index
+	staash = stash --include-untracked
+	staaash = stash --all
+
+	st = !git status && untracked
+	shorty = status --short --branch
+
+	stats = !git log --stat | grep '|' | awk '{print $1}' | sort | uniq -c | sort -n
 	topush = log origin..master
 	track = update-index --no-assume-unchanged
 	untrack = update-index --assume-unchanged
+        undo = reset --soft HEAD^1
 	wc = whatchanged -p
-	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
+	conflict = !gitk --left-right HEAD...MERGE_HEAD
+
+#	branch-name = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
+#	last-diff = !git log --format='%H %P' | xargs -L 1 git diff
 
 #Highlight whitespace in diffs
 
@@ -34,7 +56,19 @@
 	whitespace = red reverse
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = /Users/curlstac/.gitignore_global
 [push]
 	default = tracking
 [branch]
 	autosetuprebase = always
+[user]
+	email = stacy.curl@barclays.com
+	name = Stacy Curl
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[difftool "icdiff"]
+    cmd = icdiff $LOCAL $REMOTE
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

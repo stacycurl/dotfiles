@@ -2,6 +2,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagaced
 
 source ~/.bash_aliases
+source ~/dev/projects/boost-tools/init.sh
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -41,4 +42,20 @@ else
 fi
  
 unset color_prompt force_color_prompt
+
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.bin"
+
+function title {
+    echo -ne "\033]0;"$*"\007"
+}
+
+_my_cd () {
+  declare CDPATH=
+  _cd "$@" 
+}
+complete -F _my_cd cd
+
+eval "$(thefuck --alias fu)"
 

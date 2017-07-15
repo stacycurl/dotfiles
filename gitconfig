@@ -29,9 +29,10 @@
 	sl = stash list
 	sp = stash pop
 	ss = stash show -v stash@{0}
-	stsh = stash --keep-index
-	staash = stash --include-untracked
-	staaash = stash --all
+	stsh    = stash save --keep-index        # stash only unstaged changes to tracked files
+	#stash                              # stash any changes to tracked files
+	staash  = stash save --include-untracked # stash untracked and tracked files
+	staaash = stash save --all               # stash ignored, untracked, and tracked files
 
 	st = !git status && untracked
 	shorty = status --short --branch
@@ -66,7 +67,7 @@
 	name = Stacy Curl
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [difftool "icdiff"]
     cmd = icdiff $LOCAL $REMOTE
 [mergetool "sourcetree"]
